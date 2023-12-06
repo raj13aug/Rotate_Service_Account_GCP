@@ -14,18 +14,11 @@ resource "google_service_account_key" "demo_sa_key" {
   }
 }
 
-resource "google_secret_manager_secret" "demo_secret" {
-  secret_id = "demo_service_account_key_secret"
-  replication {
-    auto {}
-  }
+
+resource "local_file" "sa_json_file" {
+  content  = base64decode(google_service_account_key.demo_sa_key.private_key)
+  filename = "${path.module}/demo_key.json"
+
 }
-
-resource "google_secret_manager_secret_version" "key_secret_version" {
-  secret      = google_secret_manager_secret.demo_secret.id
-  secret_data = base64decode(google_service_account_key.demo_sa_key.private_key)
-}
-
-
 
 # https://cloud.google.com/iam/docs/key-rotation

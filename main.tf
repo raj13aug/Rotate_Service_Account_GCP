@@ -1,6 +1,6 @@
 resource "google_service_account" "demo_sa" {
   account_id = "cloudroot7-service-account"
-  project    = "devops-counsel-demo"
+  project    = "mytesting-400910"
 }
 
 resource "time_rotating" "sa_key_rotation" {

@@ -3,7 +3,7 @@ resource "google_service_account" "demo_sa" {
 }
 
 resource "time_rotating" "sa_key_rotation" {
-  rotation_days = 5
+  rotation_days = 10
 }
 
 resource "google_service_account_key" "demo_sa_key" {
